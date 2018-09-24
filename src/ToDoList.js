@@ -53,7 +53,9 @@ class ToDoList extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({ listItems: localStorage.getItem("listItems").split(",") });
+    const listItems = localStorage.getItem("listItems");
+
+    this.setState({ listItems: listItems ? listItems.split(",") : [] });
   }
 
   onSortEnd = ({ oldIndex, newIndex }) => {
@@ -64,8 +66,9 @@ class ToDoList extends React.Component {
   };
 
   addItem = e => {
-    (this.state.listItems[0] == "") ?
-    this.state.listItems[0] = this.state.inputValue:this.state.listItems.push(this.state.inputValue);
+    this.state.listItems[0] == ""
+      ? (this.state.listItems[0] = this.state.inputValue)
+      : this.state.listItems.push(this.state.inputValue);
     this.setState({ inputValue: "" });
     e.preventDefault();
     localStorage.setItem("listItems", this.state.listItems);
