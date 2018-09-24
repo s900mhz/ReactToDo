@@ -64,7 +64,8 @@ class ToDoList extends React.Component {
   };
 
   addItem = e => {
-    this.state.listItems.push(this.state.inputValue);
+    (this.state.listItems[0] == "") ?
+    this.state.listItems[0] = this.state.inputValue:this.state.listItems.push(this.state.inputValue);
     this.setState({ inputValue: "" });
     e.preventDefault();
     localStorage.setItem("listItems", this.state.listItems);
