@@ -16,33 +16,33 @@ const alertStyles = [
 ];
 
 //I'm working on trying to assign every item a different color. That's the reason for the weirdness in the classname
-const SortableItem = SortableElement(
-  ({ value, deleteItem, number }) => {
-    return (
-      <li className={`alert alert-${alertStyles[number]}`}>
-        {value}{" "}
-        <button className="close" onClick={() => deleteItem(number)}>
-          X
-        </button>
-      </li>
-    );
-  }
-);
+const SortableItem = SortableElement(({ value, deleteItem, number }) => {
+  return (
+    <li className={`alert alert-${alertStyles[number]}`}>
+      {value}{" "}
+      <button className="close" onClick={() => deleteItem(number)}>
+        X
+      </button>
+    </li>
+  );
+});
 
 const SortableList = SortableContainer(({ items, deleteFunc }) => {
   return (
-    <ul className="list-group">
-      {items.map((value, index) => (
-        <SortableItem
-          key={`item-${index}`}
-          index={index}
-          number={index}
-          value={value}
-          deleteItem={deleteFunc}
-          
-        />
-      ))}
-    </ul>
+    <div className="list-container">
+      <h1>Remembrall</h1>
+      <ul className="list-group">
+        {items.map((value, index) => (
+          <SortableItem
+            key={`item-${index}`}
+            index={index}
+            number={index}
+            value={value}
+            deleteItem={deleteFunc}
+          />
+        ))}
+      </ul>
+    </div>
   );
 });
 
@@ -87,7 +87,6 @@ class ToDoList extends React.Component {
       <div className="container">
         <div className="row align-items-start">
           <div className="col">
-
             <SortableList
               deleteFunc={this.deleteItem}
               items={this.state.listItems}

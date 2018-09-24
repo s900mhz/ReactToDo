@@ -2,6 +2,6 @@ ul {
   list-style: none;
 }
 
-.sortable-item{
-  
+.list-container {
+  width: 70%;
 }
